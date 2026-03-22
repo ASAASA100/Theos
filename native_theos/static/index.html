@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>THEOS — AI That Argues With Itself</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:      #07070d;
+      --bg2:     #0d0d1a;
+      --surface: #111124;
+      --border:  rgba(255,255,255,0.07);
+      --gold:    #c9a84c;
+      --gold2:   #f0d080;
+      --violet:  #7c5af5;
+      --text:    #e8e8f0;
+      --muted:   #7878a0;
+      --radius:  14px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2.5rem;
+      background: rgba(7,7,13,0.85);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      display: flex; align-items: center; gap: 0.75rem;
+      text-decoration: none;
+    }
+
+    .logo img { height: 44px; width: auto; }
+
+    .logo-text {
+      font-size: 1.4rem; font-weight: 800; letter-spacing: 0.05em;
+      color: var(--gold); font-family: Georgia, serif;
+    }
+
+    .nav-right {
+      display: flex; align-items: center; gap: 1.5rem;
+    }
+
+    .nav-right a {
+      color: var(--muted); text-decoration: none; font-size: 0.88rem;
+      transition: color 0.2s;
+    }
+    .nav-right a:hover { color: var(--text); }
+
+    .patent-badge {
+      font-size: 0.72rem; color: var(--gold); opacity: 0.7;
+      letter-spacing: 0.05em;
+    }
+
+    /* HERO */
+    .hero-outer {
+      position: relative;
+      overflow: hidden;
+      background: radial-gradient(ellipse 80% 60% at 70% 50%, rgba(201,168,76,0.06) 0%, transparent 70%),
+                  radial-gradient(ellipse 40% 40% at 20% 60%, rgba(124,90,245,0.05) 0%, transparent 60%);
+    }
+
+    .hero {
+      position: relative; z-index: 1;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      align-items: center;
+      gap: 4rem;
+      padding: 8rem 4rem 6rem;
+      max-width: 1360px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 4rem; }
+      .hero-img { display: none; }
+    }
+
+    .hero-content {}
+
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.3);
+      border-radius: 100px; padding: 0.35rem 1rem;
+      font-size: 0.78rem; color: var(--gold);
+      font-weight: 500; letter-spacing: 0.05em;
+      margin-bottom: 1.8rem;
+    }
+
+    .live-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 8px #22c55e;
+      animation: blink 2s ease-in-out infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; } 50% { opacity: 0.3; }
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 1.4rem;
+      font-family: Georgia, serif;
+    }
+
+    .gold-text {
+      color: var(--gold);
+    }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 500px;
+      margin-bottom: 2.5rem;
+      line-height: 1.75;
+    }
+
+    .hero-actions {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, var(--gold) 0%, #a07830 100%);
+      color: #07070d; border: none;
+      padding: 0.85rem 2rem; border-radius: 10px;
+      font-size: 1rem; font-weight: 700; cursor: pointer;
+      transition: all 0.25s; text-decoration: none;
+      box-shadow: 0 0 30px rgba(201,168,76,0.3);
+    }
+    .btn-gold:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 50px rgba(201,168,76,0.5);
+    }
+
+    .btn-outline {
+      background: none;
+      border: 1px solid rgba(201,168,76,0.4);
+      color: var(--gold); padding: 0.85rem 2rem; border-radius: 10px;
+      font-size: 1rem; cursor: pointer;
+      transition: all 0.2s; text-decoration: none;
+    }
+    .btn-outline:hover {
+      background: rgba(201,168,76,0.08);
+      border-color: var(--gold);
+    }
+
+    .hero-img {
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+
+    .hero-img::before {
+      content: '';
+      position: absolute;
+      inset: -20px;
+      background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(201,168,76,0.12) 0%, transparent 70%);
+      z-index: 0;
+      border-radius: 50%;
+    }
+
+    .hero-img img {
+      width: 100%;
+      max-width: 680px;
+      border-radius: 20px;
+      opacity: 0.95;
+      position: relative; z-index: 1;
+      box-shadow:
+        0 0 0 1px rgba(201,168,76,0.15),
+        0 30px 80px rgba(0,0,0,0.6),
+        0 0 60px rgba(201,168,76,0.08);
+    }
+
+    /* DIVIDER */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,168,76,0.3), transparent);
+      max-width: 900px; margin: 0 auto;
+    }
+
+    /* EVIDENCE STRIP */
+    .evidence {
+      max-width: 900px; margin: 0 auto;
+      padding: 3rem 2rem;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      text-align: center;
+    }
+
+    @media (max-width: 700px) {
+      .evidence { grid-template-columns: 1fr; }
+    }
+
+    .evidence-item {}
+
+    .evidence-num {
+      font-size: 2.8rem; font-weight: 800; letter-spacing: -0.04em;
+      color: var(--gold); font-family: Georgia, serif;
+      line-height: 1; margin-bottom: 0.4rem;
+    }
+
+    .evidence-label {
+      color: var(--muted); font-size: 0.88rem; line-height: 1.5;
+    }
+
+    .evidence-source {
+      font-size: 0.72rem; color: rgba(201,168,76,0.5);
+      margin-top: 0.3rem; font-style: italic;
+    }
+
+    /* HOW IT WORKS */
+    .section {
+      max-width: 1100px; margin: 0 auto;
+      padding: 5rem 2rem;
+    }
+
+    .section-label {
+      display: inline-block;
+      font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--gold); font-weight: 600; margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 800; letter-spacing: -0.03em;
+      margin-bottom: 0.8rem; line-height: 1.15;
+      font-family: Georgia, serif;
+    }
+
+    .section-sub {
+      color: var(--muted); max-width: 560px; font-size: 1rem;
+      line-height: 1.7; margin-bottom: 3rem;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    @media (max-width: 700px) {
+      .steps { grid-template-columns: 1fr; }
+    }
+
+    .step {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      position: relative;
+    }
+
+    .step-num {
+      position: absolute; top: -14px; left: 2rem;
+      background: var(--gold);
+      color: #07070d;
+      font-size: 0.72rem; font-weight: 800;
+      padding: 0.2rem 0.75rem;
+      border-radius: 100px;
+      letter-spacing: 0.05em;
+    }
+
+    .step h3 {
+      font-size: 1.1rem; font-weight: 700;
+      margin-bottom: 0.6rem; margin-top: 0.5rem;
+      color: var(--gold2);
+    }
+
+    .step p { color: var(--muted); font-size: 0.9rem; line-height: 1.65; }
+
+    /* QUERY INTERFACE */
+    .query-section {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 5rem 2rem;
+    }
+
+    .query-wrap {
+      max-width: 860px; margin: 0 auto;
+    }
+
+    .query-box {
+      background: var(--surface);
+      border: 1px solid rgba(201,168,76,0.25);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.4);
+    }
+
+    .query-header {
+      background: rgba(201,168,76,0.05);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 1.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+
+    .query-title {
+      font-size: 0.88rem; font-weight: 600; color: var(--gold);
+      letter-spacing: 0.05em;
+    }
+
+    .mode-pills {
+      display: flex; gap: 0.5rem;
+    }
+
+    .mode-pill {
+      background: none; border: 1px solid var(--border);
+      color: var(--muted); padding: 0.25rem 0.75rem;
+      border-radius: 100px; font-size: 0.75rem; cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .mode-pill.active, .mode-pill:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(201,168,76,0.08);
+    }
+
+    .query-body { padding: 1.5rem; }
+
+    textarea#query-input {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem;
+      color: var(--text);
+      font-size: 1rem;
+      font-family: inherit;
+      resize: vertical;
+      min-height: 100px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    textarea#query-input:focus {
+      border-color: rgba(201,168,76,0.4);
+    }
+
+    textarea#query-input::placeholder { color: var(--muted); }
+
+    .query-footer {
+      padding: 1rem 1.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+      border-top: 1px solid var(--border);
+    }
+
+    .query-hint { font-size: 0.8rem; color: var(--muted); }
+
+    #submit-btn {
+      background: linear-gradient(135deg, var(--gold) 0%, #a07830 100%);
+      color: #07070d; border: none;
+      padding: 0.65rem 1.75rem; border-radius: 9px;
+      font-size: 0.95rem; font-weight: 700; cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    #submit-btn:hover:not(:disabled) {
+      box-shadow: 0 0 30px rgba(201,168,76,0.4);
+      transform: translateY(-1px);
+    }
+
+    #submit-btn:disabled {
+      opacity: 0.5; cursor: not-allowed;
+    }
+
+    /* RESULTS */
+    #results {
+      margin-top: 2rem;
+      display: none;
+    }
+
+    .loading-state {
+      text-align: center; padding: 3rem;
+      color: var(--muted);
+    }
+
+    .loading-dots {
+      display: inline-flex; gap: 6px; margin-top: 1rem;
+    }
+
+    .loading-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--gold); opacity: 0.4;
+      animation: loadpulse 1.4s ease-in-out infinite;
+    }
+    .loading-dot:nth-child(2) { animation-delay: 0.2s; }
+    .loading-dot:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes loadpulse {
+      0%, 80%, 100% { transform: scale(0.7); opacity: 0.3; }
+      40% { transform: scale(1); opacity: 1; }
+    }
+
+    .pass-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 1.25rem;
+      overflow: hidden;
+    }
+
+    .pass-header {
+      background: rgba(255,255,255,0.03);
+      border-bottom: 1px solid var(--border);
+      padding: 0.75rem 1.25rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+
+    .pass-label { font-size: 0.82rem; font-weight: 600; color: var(--gold); }
+
+    .phi-badge {
+      font-size: 0.75rem; color: var(--muted);
+      background: rgba(201,168,76,0.08);
+      border: 1px solid rgba(201,168,76,0.2);
+      padding: 0.2rem 0.6rem; border-radius: 100px;
+    }
+
+    .pass-body {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+      padding: 1.25rem;
+    }
+
+    @media (max-width: 600px) {
+      .pass-body { grid-template-columns: 1fr; }
+    }
+
+    .pathway {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem;
+    }
+
+    .pathway-label {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; margin-bottom: 0.6rem;
+    }
+
+    .pathway.constructive .pathway-label { color: #4ade80; }
+    .pathway.adversarial .pathway-label { color: #f87171; }
+
+    .pathway p {
+      font-size: 0.88rem; color: var(--text); line-height: 1.6;
+    }
+
+    .synthesis-card {
+      background: linear-gradient(135deg, rgba(201,168,76,0.08) 0%, rgba(124,90,245,0.06) 100%);
+      border: 1px solid rgba(201,168,76,0.3);
+      border-radius: var(--radius);
+      padding: 2rem;
+      margin-top: 1rem;
+    }
+
+    .synthesis-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+
+    .synthesis-title {
+      font-size: 1rem; font-weight: 700; color: var(--gold);
+    }
+
+    .confidence-badge {
+      font-size: 0.8rem; padding: 0.25rem 0.75rem;
+      background: rgba(201,168,76,0.15);
+      border: 1px solid rgba(201,168,76,0.3);
+      border-radius: 100px; color: var(--gold);
+    }
+
+    .synthesis-text {
+      font-size: 0.95rem; line-height: 1.75; color: var(--text);
+    }
+
+    .halt-note {
+      margin-top: 1rem;
+      font-size: 0.78rem; color: var(--muted);
+      font-style: italic;
+    }
+
+    .error-msg {
+      background: rgba(239,68,68,0.1);
+      border: 1px solid rgba(239,68,68,0.3);
+      border-radius: 10px;
+      padding: 1rem 1.5rem;
+      color: #f87171;
+      font-size: 0.9rem;
+    }
+
+    /* CERTIFIED SECTION */
+    #certified {
+      background: radial-gradient(ellipse 60% 60% at 30% 50%, rgba(201,168,76,0.05) 0%, transparent 70%);
+    }
+
+    .certified-section {
+      max-width: 1100px; margin: 0 auto;
+      padding: 6rem 2rem;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+    }
+
+    @media (max-width: 800px) {
+      .certified-section { grid-template-columns: 1fr; }
+      .certified-badge-col { text-align: center; }
+    }
+
+    .certified-badge-col {
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .certified-badge-col img {
+      max-width: 380px; width: 100%;
+      filter:
+        drop-shadow(0 0 60px rgba(201,168,76,0.4))
+        drop-shadow(0 20px 40px rgba(0,0,0,0.5));
+      animation: badgeFloat 4s ease-in-out infinite;
+    }
+
+    @keyframes badgeFloat {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .certified-content h2 {
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-weight: 800; font-family: Georgia, serif;
+      letter-spacing: -0.02em; line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .certified-content p {
+      color: var(--muted); line-height: 1.75; margin-bottom: 1.5rem;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 3rem 2.5rem 2rem;
+      max-width: 1100px; margin: 0 auto;
+    }
+
+    .footer-inner {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      flex-wrap: wrap; gap: 2rem; margin-bottom: 2rem;
+    }
+
+    .footer-brand p {
+      color: var(--muted); font-size: 0.85rem; line-height: 1.6;
+      max-width: 320px; margin-top: 0.5rem;
+    }
+
+    .footer-patent {
+      font-size: 0.8rem; color: var(--muted);
+      border-top: 1px solid var(--border);
+      padding-top: 1.5rem;
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+    }
+
+    .footer-patent a { color: var(--muted); text-decoration: none; }
+    .footer-patent a:hover { color: var(--gold); }
+
+    /* PHI CHART */
+    .phi-chart-card {
+      background: var(--surface);
+      border: 1px solid rgba(201,168,76,0.2);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .phi-chart-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+
+    .phi-chart-title {
+      font-size: 0.82rem; font-weight: 700; color: var(--gold);
+      letter-spacing: 0.08em; text-transform: uppercase;
+    }
+
+    .phi-chart-legend {
+      display: flex; gap: 1rem;
+      font-size: 0.72rem; color: var(--muted);
+    }
+
+    .phi-chart-legend span { display: flex; align-items: center; gap: 0.35rem; }
+    .phi-chart-legend .dot {
+      width: 8px; height: 8px; border-radius: 50%;
+    }
+
+    .phi-chart-wrap {
+      position: relative; height: 160px;
+    }
+
+    /* CERTIFY FORM */
+    .certify-form {
+      margin-top: 1.5rem;
+    }
+
+    .certify-form textarea {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem;
+      color: var(--text);
+      font-size: 0.9rem;
+      font-family: inherit;
+      resize: vertical;
+      min-height: 90px;
+      outline: none;
+      transition: border-color 0.2s;
+      margin-bottom: 0.75rem;
+    }
+
+    .certify-form textarea:focus { border-color: rgba(201,168,76,0.4); }
+
+    #certify-results {
+      margin-top: 1.25rem;
+    }
+
+    .score-display {
+      display: flex; align-items: center; gap: 2rem; flex-wrap: wrap;
+      background: var(--surface);
+      border: 1px solid rgba(201,168,76,0.25);
+      border-radius: var(--radius);
+      padding: 1.5rem 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .score-circle {
+      width: 90px; height: 90px; border-radius: 50%;
+      border: 3px solid var(--gold);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 0 30px rgba(201,168,76,0.2);
+    }
+
+    .score-num {
+      font-size: 2rem; font-weight: 800; color: var(--gold);
+      font-family: Georgia, serif; line-height: 1;
+    }
+
+    .score-grade {
+      font-size: 0.75rem; color: var(--muted); margin-top: 0.2rem;
+    }
+
+    .score-details { flex: 1; }
+
+    .score-details h4 {
+      font-size: 1rem; font-weight: 700; color: var(--gold2);
+      margin-bottom: 0.5rem;
+    }
+
+    .score-details p {
+      font-size: 0.88rem; color: var(--muted); line-height: 1.6;
+    }
+
+    /* Fade in */
+    .fade-in { opacity: 0; transform: translateY(20px); transition: all 0.6s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="logo" href="/">
+      <img src="/static/theos-box.png" alt="THEOS" onerror="this.style.display='none'"/>
+      <span class="logo-text">THEOS</span>
+    </a>
+    <div class="nav-right">
+      <a href="#how-it-works">How It Works</a>
+      <a href="#try-it">Try It</a>
+      <a href="#certified">Certify</a>
+      <span class="patent-badge">Patent Pending · App. No. 18/919,771</span>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero-outer">
+  <section class="hero">
+    <div class="hero-content fade-in">
+      <div class="hero-eyebrow">
+        <div class="live-dot"></div>
+        Live · Native AI v2 · Governor Accuracy 97.9%
+      </div>
+
+      <h1>The AI That<br/><span class="gold-text">Argues With Itself</span><br/>Before It Answers You.</h1>
+
+      <p class="hero-sub">
+        THEOS runs every question through two opposing pathways — one constructive, one adversarial —
+        measures how far apart they are, and forces them to resolve.
+        The answer you get has already survived its own cross-examination.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#try-it" class="btn-gold">Ask THEOS →</a>
+        <a href="#how-it-works" class="btn-outline">How It Works</a>
+      </div>
+    </div>
+
+    <div class="hero-img fade-in">
+      <img src="/static/theos-hero.webp" alt="Human and AI thinking together"
+           onerror="this.style.display='none'"/>
+    </div>
+  </section>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- EVIDENCE -->
+  <div class="evidence fade-in">
+    <div class="evidence-item">
+      <div class="evidence-num">82%</div>
+      <div class="evidence-label">THEOS answer quality score</div>
+      <div class="evidence-source">vs 62% for standard AI · GPT-4o independent rating</div>
+    </div>
+    <div class="evidence-item">
+      <div class="evidence-num">97.9%</div>
+      <div class="evidence-label">Governor decision accuracy</div>
+      <div class="evidence-source">Trained on real dialectical tension · Run 7</div>
+    </div>
+    <div class="evidence-item">
+      <div class="evidence-num">25.5%</div>
+      <div class="evidence-label">Phi reduction per wringer pass</div>
+      <div class="evidence-source">Cross-attention module · Claim 23</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- HOW IT WORKS -->
+  <section class="section" id="how-it-works">
+    <div class="fade-in">
+      <span class="section-label">How It Works</span>
+      <h2 class="section-title">The Wringer.</h2>
+      <p class="section-sub">
+        Every question runs through a patented three-phase process before you see an answer.
+        No single-pass guessing. No probability-weighted hedging. Genuine dialectical resolution.
+      </p>
+    </div>
+
+    <div class="steps fade-in">
+      <div class="step">
+        <div class="step-num">STEP 1</div>
+        <h3>Two Pathways Respond</h3>
+        <p>
+          Your question enters shared layers, then forks. The left pathway builds the strongest
+          constructive case. The right pathway — trained separately — finds every flaw, gap,
+          and unstated assumption. Neither knows what the other is doing.
+        </p>
+      </div>
+      <div class="step">
+        <div class="step-num">STEP 2</div>
+        <h3>Phi Measures the Gap</h3>
+        <p>
+          Composite Phi (Φ) measures how far apart the two pathways are — using cosine distance,
+          Jensen-Shannon divergence, and content overlap. If Phi is above the threshold,
+          the wringer runs another pass. The governor decides: continue, halt, or reframe.
+        </p>
+      </div>
+      <div class="step">
+        <div class="step-num">STEP 3</div>
+        <h3>Synthesis or Honest Disagreement</h3>
+        <p>
+          When pathways converge, THEOS synthesizes. When they can't — on genuinely hard questions —
+          THEOS reports the honest disagreement rather than manufacturing false confidence.
+          You see the reasoning, not just the conclusion.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXAMPLE INSIGHT -->
+  <section class="section" style="padding-bottom: 1rem;">
+    <div class="fade-in">
+      <span class="section-label">Example Finding</span>
+      <h2 class="section-title">What THEOS finds that others miss.</h2>
+      <p class="section-sub">A real output from the wringer — on a question every AI has answered, and gotten wrong.</p>
+    </div>
+    <div class="fade-in" style="background: var(--surface); border: 1px solid rgba(201,168,76,0.25); border-radius: 18px; overflow: hidden; margin-top: 1.5rem; box-shadow: 0 30px 80px rgba(0,0,0,0.3);">
+      <div style="background: rgba(201,168,76,0.06); border-bottom: 1px solid var(--border); padding: 1rem 1.75rem; display: flex; align-items: center; justify-content: space-between;">
+        <div>
+          <div style="font-size: 0.72rem; letter-spacing: 0.1em; color: var(--gold); font-weight: 700; text-transform: uppercase; margin-bottom: 0.2rem;">Question posed to THEOS</div>
+          <div style="font-size: 1rem; color: var(--text); font-weight: 600;">"Is certainty a virtue or a liability?"</div>
+        </div>
+        <div style="font-size: 0.75rem; color: var(--muted); background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.2); padding: 0.3rem 0.75rem; border-radius: 100px;">Φ = 0.31 · 3 passes</div>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-bottom: 1px solid var(--border);">
+        <div style="padding: 1.5rem 1.75rem; border-right: 1px solid var(--border);">
+          <div style="font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #4ade80; margin-bottom: 0.75rem;">▲ Constructive</div>
+          <p style="font-size: 0.88rem; color: var(--text); line-height: 1.65;">Certainty provides the psychological foundation for decisive action. Without it, analysis paralysis prevents any meaningful progress. The confident surgeon operates; the uncertain one doesn't.</p>
+        </div>
+        <div style="padding: 1.5rem 1.75rem;">
+          <div style="font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #f87171; margin-bottom: 0.75rem;">▼ Adversarial</div>
+          <p style="font-size: 0.88rem; color: var(--text); line-height: 1.65;">Certainty severs its own error-correction mechanism. The certain person stops gathering evidence. Every atrocity in history was committed by someone absolutely sure they were right.</p>
+        </div>
+      </div>
+      <div style="padding: 1.75rem; background: linear-gradient(135deg, rgba(201,168,76,0.06), rgba(124,90,245,0.04));">
+        <div style="font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem;">⚖ Synthesis — what single-pass AI misses</div>
+        <p style="font-size: 0.95rem; color: var(--text); line-height: 1.75;">Certainty is self-disabling at the epistemological level: the moment you close inquiry, you remove the mechanism that could correct a wrong belief. What masquerades as "decisive confidence" is often just premature closure. The working answer: calibrated conviction — strong enough to act, porous enough to update.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUERY INTERFACE -->
+  <div class="query-section" id="try-it">
+    <div class="query-wrap">
+      <div style="margin-bottom: 2rem;" class="fade-in">
+        <span class="section-label">Live Reasoning</span>
+        <h2 class="section-title">Ask THEOS Anything.</h2>
+        <p class="section-sub" style="margin-bottom: 0;">
+          Real questions get real dialectical treatment. Expect 15–30 seconds —
+          THEOS is actually thinking, not retrieving.
+        </p>
+      </div>
+
+      <div class="query-box fade-in">
+        <div class="query-header">
+          <span class="query-title">THEOS WRINGER</span>
+          <div class="mode-pills">
+            <button class="mode-pill active" data-mode="1">Quick · 1 pass</button>
+            <button class="mode-pill" data-mode="3">Standard · 3 passes</button>
+            <button class="mode-pill" data-mode="7">Deep · 7 passes</button>
+          </div>
+        </div>
+
+        <div class="query-body">
+          <textarea id="query-input"
+            placeholder="Ask a hard question — ethical, legal, medical, philosophical, strategic. The harder the better."></textarea>
+        </div>
+
+        <div class="query-footer">
+          <span class="query-hint">Good questions have genuine tension. THEOS finds it.</span>
+          <button id="submit-btn" onclick="runWringer()">Run Wringer →</button>
+        </div>
+      </div>
+
+      <div id="results"></div>
+    </div>
+  </div>
+
+  <!-- THEOS CERTIFIED -->
+  <section id="certified">
+    <div class="certified-section">
+      <div class="certified-badge-col fade-in">
+        <img src="/static/theos-certified.svg" alt="THEOS Certified — Frederick Davis Stalnecker — Patent Pending App. No. 18/919,771"
+             onerror="this.src='/static/theos-certified.png'"/>
+      </div>
+      <div class="certified-content fade-in">
+        <span class="section-label">THEOS Certified · Beta</span>
+        <h2>How good is <em>your</em> AI's answer?</h2>
+        <p>
+          Paste a question and an AI-generated answer.
+          THEOS runs the full wringer on the same question and returns a score (0–100),
+          a grade (A–F), and a specific account of what was missed.
+        </p>
+        <div class="certify-form">
+          <textarea id="certify-question" placeholder="The question that was asked…" style="min-height: 60px;"></textarea>
+          <textarea id="certify-answer" placeholder="Paste the AI answer to evaluate…"></textarea>
+          <button class="btn-gold" onclick="runCertify()" id="certify-btn" style="font-size: 0.9rem; padding: 0.7rem 1.75rem;">
+            Certify This Answer →
+          </button>
+        </div>
+        <div id="certify-results"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a class="logo" href="/">
+          <img src="/static/theos-logo.webp" alt="THEOS" style="height:36px;" onerror="this.style.display='none'"/>
+          <span class="logo-text">THEOS</span>
+        </a>
+        <p>
+          Native dialectical reasoning architecture.
+          Built by Frederick Davis Stalnecker.
+          Every answer stress-tested before delivery.
+        </p>
+      </div>
+      <div>
+        <div style="color: var(--muted); font-size: 0.85rem; line-height: 2;">
+          <div><a href="https://theosresearch.org" style="color:var(--gold); text-decoration:none;">theosresearch.org</a></div>
+          <div>Patent Pending · U.S. App. No. 18/919,771</div>
+          <div>Provisional No. 63/831,738</div>
+          <div>Claims 21–24 · Composite Φ, Governor, Cross-Attention, POS Loss</div>
+        </div>
+      </div>
+      <div>
+        <div style="font-size: 0.72rem; color: var(--muted); line-height: 1.8; opacity: 0.85;">
+          <div style="font-size: 0.75rem; color: var(--gold); font-weight: 600; margin-bottom: 0.6rem; letter-spacing: 0.05em;">PATENT COUNSEL &amp; REPRESENTATION</div>
+          <img src="/static/patterson-thuente.png" alt="Patterson Thuente IP"
+               style="height: 48px; width: auto; margin-bottom: 0.6rem; display: block; opacity: 0.9;"/>
+          <div>Jim Patterson</div>
+          <div>900 IDS Center · 80 South 8th Street</div>
+          <div>Minneapolis, MN 55402</div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-patent">
+      <span>© 2026 Frederick Davis Stalnecker · THEOS Native AI · All rights reserved.</span>
+      <span>Patent counsel: Patterson Thuente IP, Minneapolis · Independent validation: GPT-4o scored THEOS 82% vs 62% · 30-question study</span>
+    </div>
+  </footer>
+
+  <script>
+    const API = '';
+    let currentMode = 1;
+
+    // Mode pill selection
+    document.querySelectorAll('.mode-pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        document.querySelectorAll('.mode-pill').forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+        currentMode = parseInt(pill.dataset.mode);
+      });
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        const el = document.querySelector(a.getAttribute('href'));
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    function haltLabel(reason) {
+      const map = {
+        'convergence': 'Pathways converged — genuine synthesis reached',
+        'budget': 'Maximum passes reached — blend of both views',
+        'halt_disagree': 'Genuine disagreement — both views presented honestly',
+        'mode1_single_engine': 'Single-pass mode — constructive pathway only',
+        'mode2_dual_no_wringer': 'Dual engines, no iteration',
+      };
+      return map[reason] || reason;
+    }
+
+    function phiColor(phi) {
+      if (phi < 0.05) return '#4ade80';
+      if (phi < 0.12) return '#facc15';
+      return '#f87171';
+    }
+
+    async function runWringer() {
+      const query = document.getElementById('query-input').value.trim();
+      if (!query) return;
+
+      const btn = document.getElementById('submit-btn');
+      const results = document.getElementById('results');
+      btn.disabled = true;
+      btn.textContent = 'Running...';
+      results.style.display = 'block';
+
+      const maxPasses = currentMode === 1 ? 1 : currentMode === 3 ? 3 : 7;
+
+      results.innerHTML = `
+        <div class="loading-state">
+          <div style="color: var(--gold); font-weight: 600; font-size: 1rem;">
+            THEOS is running the wringer...
+          </div>
+          <div style="color: var(--muted); margin-top: 0.5rem; font-size: 0.88rem;">
+            ${maxPasses === 1 ? 'Single pass' : `Up to ${maxPasses} passes`} ·
+            Left and right pathways reasoning independently
+          </div>
+          <div class="loading-dots">
+            <div class="loading-dot"></div>
+            <div class="loading-dot"></div>
+            <div class="loading-dot"></div>
+          </div>
+        </div>`;
+
+      try {
+        const resp = await fetch(`${API}/reason`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ query, mode: currentMode, max_passes: maxPasses })
+        });
+
+        if (!resp.ok) throw new Error(`Server error: ${resp.status}`);
+        const data = await resp.json();
+
+        let html = '';
+
+        // Show each pass in the trace
+        if (data.trace && data.trace.length > 0) {
+          data.trace.forEach((pass, i) => {
+            const phi = pass.phi || 0;
+            html += `
+              <div class="pass-card">
+                <div class="pass-header">
+                  <span class="pass-label">Pass ${pass.pass || i+1} of ${data.wringer_passes_used}</span>
+                  <span class="phi-badge" style="color: ${phiColor(phi)}">
+                    Φ divergence: ${phi.toFixed(4)} · ${pass.decision || ''}
+                  </span>
+                </div>
+                <div class="pass-body">
+                  <div class="pathway constructive">
+                    <div class="pathway-label">▲ Constructive Pathway</div>
+                    <p>${(pass.left || '').substring(0, 500)}${(pass.left||'').length > 500 ? '...' : ''}</p>
+                  </div>
+                  <div class="pathway adversarial">
+                    <div class="pathway-label">▼ Adversarial Pathway</div>
+                    <p>${(pass.right || '').substring(0, 500)}${(pass.right||'').length > 500 ? '...' : ''}</p>
+                  </div>
+                </div>
+              </div>`;
+          });
+        }
+
+        // Final synthesis
+        const confPct = Math.round((data.confidence || 0) * 100);
+        html += `
+          <div class="synthesis-card">
+            <div class="synthesis-header">
+              <span class="synthesis-title">⚖ Synthesis</span>
+              <span class="confidence-badge">Confidence: ${confPct}%</span>
+            </div>
+            <div class="synthesis-text">${data.output || ''}</div>
+            <div class="halt-note">${haltLabel(data.halt_reason || '')}</div>
+          </div>`;
+
+        results.innerHTML = html;
+
+        // Render Φ trajectory chart
+        if (data.phi_trajectory && data.phi_trajectory.length > 1) {
+          renderPhiChart(data.phi_trajectory);
+        }
+
+      } catch (err) {
+        results.innerHTML = `
+          <div class="error-msg">
+            <strong>Connection error.</strong> ${err.message}<br/>
+            <small>The server may be processing another request. Try again in a moment.</small>
+          </div>`;
+      }
+
+      btn.disabled = false;
+      btn.textContent = 'Run Wringer →';
+    }
+
+    // Enter key submits
+    document.getElementById('query-input').addEventListener('keydown', e => {
+      if (e.key === 'Enter' && e.metaKey) runWringer();
+    });
+
+    // PHI TRAJECTORY CHART
+    let phiChart = null;
+
+    function renderPhiChart(trajectory) {
+      const existing = document.getElementById('phi-chart-container');
+      if (existing) existing.remove();
+
+      const passes = trajectory.map((_, i) => `Pass ${i + 1}`);
+
+      const container = document.createElement('div');
+      container.id = 'phi-chart-container';
+      container.className = 'phi-chart-card';
+      container.innerHTML = `
+        <div class="phi-chart-header">
+          <span class="phi-chart-title">Φ Divergence Trajectory</span>
+          <div class="phi-chart-legend">
+            <span><span class="dot" style="background:#c9a84c;"></span>Φ score</span>
+            <span><span class="dot" style="background:#4ade80;"></span>Converge (0.05)</span>
+            <span><span class="dot" style="background:#facc15;"></span>Partial (0.15)</span>
+          </div>
+        </div>
+        <div class="phi-chart-wrap"><canvas id="phi-canvas"></canvas></div>`;
+
+      document.getElementById('results').prepend(container);
+
+      if (phiChart) { phiChart.destroy(); phiChart = null; }
+
+      const ctx = document.getElementById('phi-canvas').getContext('2d');
+      phiChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: passes,
+          datasets: [
+            {
+              label: 'Φ divergence',
+              data: trajectory,
+              borderColor: '#c9a84c',
+              backgroundColor: 'rgba(201,168,76,0.08)',
+              borderWidth: 2.5,
+              pointRadius: 5,
+              pointBackgroundColor: '#c9a84c',
+              tension: 0.3,
+              fill: true,
+            },
+            {
+              label: 'Converge threshold',
+              data: Array(passes.length).fill(0.05),
+              borderColor: 'rgba(74,222,128,0.5)',
+              borderWidth: 1.5,
+              borderDash: [6, 4],
+              pointRadius: 0,
+              fill: false,
+            },
+            {
+              label: 'Partial threshold',
+              data: Array(passes.length).fill(0.15),
+              borderColor: 'rgba(250,204,21,0.5)',
+              borderWidth: 1.5,
+              borderDash: [6, 4],
+              pointRadius: 0,
+              fill: false,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              backgroundColor: '#111124',
+              borderColor: 'rgba(201,168,76,0.3)',
+              borderWidth: 1,
+              titleColor: '#c9a84c',
+              bodyColor: '#e8e8f0',
+              callbacks: {
+                label: ctx => `  Φ = ${ctx.parsed.y.toFixed(4)}`,
+              },
+            },
+          },
+          scales: {
+            x: {
+              grid: { color: 'rgba(255,255,255,0.05)' },
+              ticks: { color: '#7878a0', font: { size: 11 } },
+            },
+            y: {
+              min: 0, max: 1,
+              grid: { color: 'rgba(255,255,255,0.05)' },
+              ticks: {
+                color: '#7878a0',
+                font: { size: 11 },
+                callback: v => v.toFixed(2),
+              },
+            },
+          },
+        },
+      });
+    }
+
+    // CERTIFY
+    async function runCertify() {
+      const question = document.getElementById('certify-question').value.trim();
+      const answer   = document.getElementById('certify-answer').value.trim();
+      if (!question || !answer) {
+        alert('Paste both the question and the answer to certify.');
+        return;
+      }
+
+      const btn = document.getElementById('certify-btn');
+      const out = document.getElementById('certify-results');
+      btn.disabled = true;
+      btn.textContent = 'Certifying…';
+      out.innerHTML = `<div class="loading-state" style="padding:2rem;">
+        <div style="color:var(--gold);font-weight:600;">Running dialectical audit…</div>
+        <div class="loading-dots" style="margin-top:0.75rem;">
+          <div class="loading-dot"></div><div class="loading-dot"></div><div class="loading-dot"></div>
+        </div></div>`;
+
+      try {
+        const resp = await fetch('/certify_answer', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ question, answer }),
+        });
+        if (!resp.ok) throw new Error(`Server error ${resp.status}`);
+        const d = await resp.json();
+
+        const gradeColor = d.grade === 'A' ? '#4ade80' :
+                           d.grade === 'B' ? '#86efac' :
+                           d.grade === 'C' ? '#facc15' :
+                           d.grade === 'D' ? '#fb923c' : '#f87171';
+
+        out.innerHTML = `
+          <div class="score-display">
+            <div class="score-circle" style="border-color:${gradeColor};box-shadow:0 0 30px ${gradeColor}33;">
+              <div class="score-num" style="color:${gradeColor};">${d.score}</div>
+              <div class="score-grade">Grade ${d.grade}</div>
+            </div>
+            <div class="score-details">
+              <h4>${d.verdict}</h4>
+              <p>${d.summary}</p>
+            </div>
+          </div>
+          ${d.dimensions && d.dimensions.length ? `<div class="pass-card"><div class="pass-header"><span class="pass-label">Dimension Breakdown</span><span class="phi-badge">THEOS Certified Rubric v1.0</span></div>
+            <div style="padding:1.25rem;display:grid;gap:1rem;">
+              ${d.dimensions.map(dim => `
+                <div>
+                  <div style="display:flex;align-items:center;gap:1rem;margin-bottom:0.35rem;">
+                    <div style="width:180px;font-size:0.82rem;font-weight:600;color:var(--text);">${dim.name}</div>
+                    <div style="flex:1;background:rgba(255,255,255,0.05);border-radius:100px;height:6px;">
+                      <div style="width:${(dim.score/20)*100}%;background:var(--gold);height:6px;border-radius:100px;transition:width 0.6s ease;"></div>
+                    </div>
+                    <div style="width:48px;text-align:right;font-size:0.82rem;color:var(--gold);font-weight:700;">${dim.score}/20</div>
+                  </div>
+                  ${dim.justification ? `<div style="font-size:0.78rem;color:var(--muted);padding-left:0.25rem;font-style:italic;">${dim.justification}</div>` : ''}
+                </div>`).join('')}
+            </div></div>` : ''}
+          ${d.missed && d.missed.length ? `<div class="pass-card" style="margin-top:0.75rem;">
+            <div class="pass-header"><span class="pass-label" style="color:#f87171;">What the original AI missed</span></div>
+            <div style="padding:1.25rem;">
+              <ul style="list-style:none;display:grid;gap:0.5rem;">
+                ${d.missed.map(m => `<li style="font-size:0.88rem;color:var(--text);display:flex;gap:0.6rem;"><span style="color:#f87171;flex-shrink:0;">✗</span>${m}</li>`).join('')}
+              </ul>
+            </div></div>` : ''}
+          ${d.theos_found ? `<div class="synthesis-card" style="margin-top:0.75rem;">
+            <div class="synthesis-header"><span class="synthesis-title">What THEOS found instead</span></div>
+            <div class="synthesis-text">${d.theos_found}</div>
+          </div>` : ''}`;
+      } catch (err) {
+        out.innerHTML = `<div class="error-msg"><strong>Certification failed.</strong> ${err.message}</div>`;
+      }
+
+      btn.disabled = false;
+      btn.textContent = 'Certify This Answer →';
+    }
+
+    // Scroll fade-in
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

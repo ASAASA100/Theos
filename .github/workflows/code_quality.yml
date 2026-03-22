@@ -1,0 +1,33 @@
+# Superseded by ci.yml — kept as a narrower quality-gate for PRs.
+# ci.yml is the canonical CI workflow; see that file for the full matrix.
+
+name: Code Quality
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  quality:
+    name: Code Quality Gate
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install quality tools
+        run: pip install ruff black bandit
+
+      - name: ruff
+        run: ruff check code/ examples/ tests/
+
+      - name: black (check only)
+        run: black --check code/ examples/ tests/
+
+      - name: bandit (security — advisory)
+        run: bandit -r code/ --quiet || true

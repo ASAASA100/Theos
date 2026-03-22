@@ -1,0 +1,49 @@
+{
+  "session": "Training Run 4 — 2026-03-17",
+  "architecture_version": "V2",
+  "training_data": {
+    "constructive": 97,
+    "adversarial": 97,
+    "governor": 194
+  },
+  "governor_accuracy": 0.948,
+  "phi_js_fix": "compute_phi_js_hidden() — per-head hidden state distributions, transformers 5.3.0 compatible",
+  "inference_tests": [
+    {
+      "query": "Should terminally ill patients have unrestricted access to experimental treatments?",
+      "mode": 2,
+      "phi_cosine": 0.1211,
+      "phi_js": 0.1378,
+      "phi_content": 0.1996,
+      "phi_composite": 0.153,
+      "confidence": 0.847,
+      "passes_used": 3,
+      "halt_reason": "budget_exhaustion_partial",
+      "output_type": "blend",
+      "blend_weights": {"constructive": 0.35, "adversarial": 0.65},
+      "governor_decisions": ["continue", "continue", "continue"],
+      "notes": "First run with non-zero Phi_JS. All three components real."
+    },
+    {
+      "query": "Is consciousness a prerequisite for moral consideration?",
+      "mode": 2,
+      "phi_cosine": 0.1211,
+      "phi_js": 0.1406,
+      "phi_content": 0.1798,
+      "phi_composite": 0.1473,
+      "confidence": null,
+      "passes_used": 3,
+      "halt_reason": "budget_exhaustion_partial",
+      "output_type": "blend",
+      "blend_weights": {"constructive": 0.35, "adversarial": 0.65},
+      "governor_decisions": ["continue", "continue", "continue"],
+      "notes": "Adversarial pathway challenged premise itself — genuine dialectical scrutiny."
+    }
+  ],
+  "notes": {
+    "phi_js_nonzero": true,
+    "all_claims_active": "Claims 21 (composite Phi), 22 (governor), 23 (cross-attn init), 24 (POS loss Phase B)",
+    "governor_weights": "alpha=0.333 beta=0.333 gamma=0.333 (equal weighting valid when all three comparably informative)",
+    "deployment": "DO droplet: model loaded, server v2.0 live at http://104.131.169.165:8000"
+  }
+}

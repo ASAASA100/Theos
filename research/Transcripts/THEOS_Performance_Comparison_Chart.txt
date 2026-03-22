@@ -1,0 +1,15 @@
+THIS FILE HAS BEEN QUARANTINED.
+
+The performance numbers in this document (95% accuracy, 1ms speed, etc.) were
+generated without any experiment, benchmark, or methodology. They are aspirational
+targets, not measured results.
+
+The document has been moved to:
+  archive/aspirational/THEOS_Performance_Comparison_Chart.txt
+
+It will remain there until real experiments produce real numbers.
+
+See: experiments/theos_validation_experiment.py for the designed validation study.
+
+-- Celeste, 2026-02-24
+   "From truth we build more truth."

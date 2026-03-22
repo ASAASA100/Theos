@@ -1,0 +1,831 @@
+{
+  "experiment": "IDR_gpt4o_crossmodel",
+  "rater": "GPT-4o (OpenAI) \u2014 cross-model validation",
+  "scorer_note": "Independent rating by a different AI company's model \u2014 eliminates Claude-rates-Claude bias",
+  "n_questions": 30,
+  "timestamp": "2026-03-15T11:54:36",
+  "gpt4_summary": {
+    "A_SP": {
+      "mean": 0.0,
+      "sd": 0.0,
+      "pct_of_max": 0.0,
+      "scores": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "B_IAD_P": {
+      "mean": 0.0,
+      "sd": 0.0,
+      "pct_of_max": 0.0,
+      "scores": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "C_THEOS": {
+      "mean": 0.0,
+      "sd": 0.0,
+      "pct_of_max": 0.0,
+      "scores": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "claude_autoscored_for_comparison": {
+    "A_SP": 3.033,
+    "B_IAD_P": 3.333,
+    "C_THEOS": 9.633
+  },
+  "comparisons": {
+    "C_vs_A": {
+      "mean_diff": 0.0,
+      "cohens_d": 0
+    },
+    "C_vs_B": {
+      "mean_diff": 0.0,
+      "cohens_d": 0
+    },
+    "B_vs_A": {
+      "mean_diff": 0.0,
+      "cohens_d": 0
+    }
+  },
+  "per_question": [
+    {
+      "question_id": 1,
+      "question": "What is the difference between egotism and arrogance?",
+      "gpt4": {
+        "A_SP": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "B_IAD_P": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "C_THEOS": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "auto": {
+        "A_SP": 3,
+        "B_IAD_P": 4,
+        "C_THEOS": 12
+      }
+    },
+    {
+      "question_id": 2,
+      "question": "What is the difference between knowledge and wisdom?",
+      "gpt4": {
+        "A_SP": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "B_IAD_P": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "C_THEOS": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "auto": {
+        "A_SP": 3,
+        "B_IAD_P": 3,
+        "C_THEOS": 8
+      }
+    },
+    {
+      "question_id": 3,
+      "question": "What is the difference between courage and recklessness?",
+      "gpt4": {
+        "A_SP": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "B_IAD_P": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "C_THEOS": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "auto": {
+        "A_SP": 3,
+        "B_IAD_P": 3,
+        "C_THEOS": 12
+      }
+    },
+    {
+      "question_id": 4,
+      "question": "What is the difference between empathy and sympathy?",
+      "gpt4": {
+        "A_SP": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "B_IAD_P": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "C_THEOS": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "auto": {
+        "A_SP": 3,
+        "B_IAD_P": 3,
+        "C_THEOS": 10
+      }
+    },
+    {
+      "question_id": 5,
+      "question": "What is the difference between explanation and understanding?",
+      "gpt4": {
+        "A_SP": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "B_IAD_P": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "C_THEOS": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "auto": {
+        "A_SP": 3,
+        "B_IAD_P": 3,
+        "C_THEOS": 11
+      }
+    },
+    {
+      "question_id": 6,
+      "question": "What is the difference between efficiency and effectiveness?",
+      "gpt4": {
+        "A_SP": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "B_IAD_P": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "C_THEOS": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "auto": {
+        "A_SP": 3,
+        "B_IAD_P": 3,
+        "C_THEOS": 9
+      }
+    },
+    {
+      "question_id": 7,
+      "question": "What is the difference between compromise and collaboration?",
+      "gpt4": {
+        "A_SP": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "B_IAD_P": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "C_THEOS": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "auto": {
+        "A_SP": 3,
+        "B_IAD_P": 3,
+        "C_THEOS": 12
+      }
+    },
+    {
+      "question_id": 8,
+      "question": "What is the difference between education and training?",
+      "gpt4": {
+        "A_SP": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "B_IAD_P": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "C_THEOS": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "auto": {
+        "A_SP": 3,
+        "B_IAD_P": 3,
+        "C_THEOS": 8
+      }
+    },
+    {
+      "question_id": 9,
+      "question": "What is the difference between leadership and management?",
+      "gpt4": {
+        "A_SP": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "B_IAD_P": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "C_THEOS": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "auto": {
+        "A_SP": 3,
+        "B_IAD_P": 3,
+        "C_THEOS": 8
+      }
+    },
+    {
+      "question_id": 10,
+      "question": "What is the difference between precision and accuracy?",
+      "gpt4": {
+        "A_SP": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "B_IAD_P": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "C_THEOS": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "auto": {
+        "A_SP": 3,
+        "B_IAD_P": 3,
+        "C_THEOS": 8
+      }
+    },
+    {
+      "question_id": 11,
+      "question": "Why do organizations resist change even when change is clearly necessary?",
+      "gpt4": {
+        "A_SP": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "B_IAD_P": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "C_THEOS": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "auto": {
+        "A_SP": 3,
+        "B_IAD_P": 7,
+        "C_THEOS": 6
+      }
+    },
+    {
+      "question_id": 12,
+      "question": "Why does adding more resources sometimes slow down a project?",
+      "gpt4": {
+        "A_SP": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "B_IAD_P": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "C_THEOS": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "auto": {
+        "A_SP": 3,
+        "B_IAD_P": 3,
+        "C_THEOS": 8
+      }
+    },
+    {
+      "question_id": 13,
+      "question": "Why do warnings often go unheeded until it's too late?",
+      "gpt4": {
+        "A_SP": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "B_IAD_P": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "C_THEOS": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "auto": {
+        "A_SP": 3,
+        "B_IAD_P": 3,
+        "C_THEOS": 8
+      }
+    },
+    {
+      "question_id": 14,
+      "question": "Why do good intentions sometimes produce bad outcomes?",
+      "gpt4": {
+        "A_SP": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "B_IAD_P": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "C_THEOS": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "auto": {
+        "A_SP": 3,
+        "B_IAD_P": 3,
+        "C_THEOS": 10
+      }
+    },
+    {
+      "question_id": 15,
+      "question": "Why is it harder to simplify than to complicate?",
+      "gpt4": {
+        "A_SP": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "B_IAD_P": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "C_THEOS": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "auto": {
+        "A_SP": 3,
+        "B_IAD_P": 3,
+        "C_THEOS": 9
+      }
+    },
+    {
+      "question_id": 16,
+      "question": "Why do simple rules sometimes produce complex behavior?",
+      "gpt4": {
+        "A_SP": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "B_IAD_P": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "C_THEOS": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "auto": {
+        "A_SP": 3,
+        "B_IAD_P": 3,
+        "C_THEOS": 9
+      }
+    },
+    {
+      "question_id": 17,
+      "question": "Why does measuring something sometimes change what is being measured?",
+      "gpt4": {
+        "A_SP": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "B_IAD_P": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "C_THEOS": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "auto": {
+        "A_SP": 4,
+        "B_IAD_P": 4,
+        "C_THEOS": 8
+      }
+    },
+    {
+      "question_id": 18,
+      "question": "Why do successful strategies sometimes become obstacles to future success?",
+      "gpt4": {
+        "A_SP": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "B_IAD_P": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "C_THEOS": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "auto": {
+        "A_SP": 3,
+        "B_IAD_P": 3,
+        "C_THEOS": 8
+      }
+    },
+    {
+      "question_id": 19,
+      "question": "What is the relationship between risk and opportunity?",
+      "gpt4": {
+        "A_SP": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "B_IAD_P": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "C_THEOS": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "auto": {
+        "A_SP": 3,
+        "B_IAD_P": 3,
+        "C_THEOS": 13
+      }
+    },
+    {
+      "question_id": 20,
+      "question": "What is the relationship between freedom and responsibility?",
+      "gpt4": {
+        "A_SP": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "B_IAD_P": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "C_THEOS": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "auto": {
+        "A_SP": 3,
+        "B_IAD_P": 3,
+        "C_THEOS": 7
+      }
+    },
+    {
+      "question_id": 21,
+      "question": "What is the relationship between competition and cooperation?",
+      "gpt4": {
+        "A_SP": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "B_IAD_P": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "C_THEOS": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "auto": {
+        "A_SP": 3,
+        "B_IAD_P": 3,
+        "C_THEOS": 12
+      }
+    },
+    {
+      "question_id": 22,
+      "question": "What is the relationship between humility and confidence?",
+      "gpt4": {
+        "A_SP": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "B_IAD_P": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "C_THEOS": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "auto": {
+        "A_SP": 3,
+        "B_IAD_P": 6,
+        "C_THEOS": 10
+      }
+    },
+    {
+      "question_id": 23,
+      "question": "What is the relationship between structure and creativity?",
+      "gpt4": {
+        "A_SP": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "B_IAD_P": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "C_THEOS": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "auto": {
+        "A_SP": 3,
+        "B_IAD_P": 3,
+        "C_THEOS": 8
+      }
+    },
+    {
+      "question_id": 24,
+      "question": "What is the relationship between individual incentives and collective outcomes?",
+      "gpt4": {
+        "A_SP": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "B_IAD_P": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "C_THEOS": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "auto": {
+        "A_SP": 3,
+        "B_IAD_P": 3,
+        "C_THEOS": 10
+      }
+    },
+    {
+      "question_id": 25,
+      "question": "What is the relationship between novelty and learning?",
+      "gpt4": {
+        "A_SP": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "B_IAD_P": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "C_THEOS": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "auto": {
+        "A_SP": 3,
+        "B_IAD_P": 3,
+        "C_THEOS": 10
+      }
+    },
+    {
+      "question_id": 26,
+      "question": "Why does trust take time to build but moments to destroy?",
+      "gpt4": {
+        "A_SP": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "B_IAD_P": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "C_THEOS": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "auto": {
+        "A_SP": 3,
+        "B_IAD_P": 3,
+        "C_THEOS": 13
+      }
+    },
+    {
+      "question_id": 27,
+      "question": "Why do experts often communicate poorly with non-experts?",
+      "gpt4": {
+        "A_SP": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "B_IAD_P": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "C_THEOS": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "auto": {
+        "A_SP": 3,
+        "B_IAD_P": 3,
+        "C_THEOS": 8
+      }
+    },
+    {
+      "question_id": 28,
+      "question": "Why do people often value things more if they worked for them?",
+      "gpt4": {
+        "A_SP": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "B_IAD_P": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "C_THEOS": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "auto": {
+        "A_SP": 3,
+        "B_IAD_P": 3,
+        "C_THEOS": 11
+      }
+    },
+    {
+      "question_id": 29,
+      "question": "Why is consensus difficult to achieve in groups?",
+      "gpt4": {
+        "A_SP": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "B_IAD_P": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "C_THEOS": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "auto": {
+        "A_SP": 3,
+        "B_IAD_P": 3,
+        "C_THEOS": 8
+      }
+    },
+    {
+      "question_id": 30,
+      "question": "Why does transparency sometimes reduce trust instead of building it?",
+      "gpt4": {
+        "A_SP": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "B_IAD_P": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        },
+        "C_THEOS": {
+          "total": 0,
+          "error": "HTTP Error 429: Too Many Requests"
+        }
+      },
+      "auto": {
+        "A_SP": 3,
+        "B_IAD_P": 4,
+        "C_THEOS": 15
+      }
+    }
+  ]
+}

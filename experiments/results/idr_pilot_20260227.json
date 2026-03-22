@@ -1,0 +1,1177 @@
+{
+  "experiment": "IDR_pilot_auto_scored",
+  "rubric": "Insight Detection Rubric (IDR) v1.0",
+  "scorer": "Claude Sonnet 4.6 (fresh session, 2026-02-27) \u2014 NOT human-rated",
+  "answer_source": "run_20260226_194058.json (Claude Sonnet 4.6, 2026-02-26)",
+  "honest_caveats": [
+    "Answers and scores produced by same model family (Claude Sonnet 4.6)",
+    "Scoring not fully blind \u2014 THEOS outputs have distinctive 'Necessary Conclusions' format",
+    "This is a pilot with the correct instrument, not a substitute for human blind rating",
+    "Effect sizes are very large and should be treated as preliminary until human-rated"
+  ],
+  "n_questions": 30,
+  "timestamp": "2026-02-27T04:27:05.599186",
+  "conditions": {
+    "A": "SP \u2014 Single-pass direct answer",
+    "B": "IAD-P \u2014 Structured I\u2192A\u2192D in one prompt",
+    "C": "THEOS \u2014 Full two-engine multi-pass I\u2192A\u2192D"
+  },
+  "summary": {
+    "A_SP": {
+      "mean": 3.033,
+      "sd": 0.183,
+      "pct_of_max": 20.2,
+      "scores": [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        4,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ]
+    },
+    "B_IAD_P": {
+      "mean": 3.333,
+      "sd": 0.922,
+      "pct_of_max": 22.2,
+      "scores": [
+        4,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        7,
+        3,
+        3,
+        3,
+        3,
+        3,
+        4,
+        3,
+        3,
+        3,
+        3,
+        6,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        4
+      ]
+    },
+    "C_THEOS": {
+      "mean": 9.633,
+      "sd": 2.109,
+      "pct_of_max": 64.2,
+      "scores": [
+        12,
+        8,
+        12,
+        10,
+        11,
+        9,
+        12,
+        8,
+        8,
+        8,
+        6,
+        8,
+        8,
+        10,
+        9,
+        9,
+        8,
+        8,
+        13,
+        7,
+        12,
+        10,
+        8,
+        10,
+        10,
+        13,
+        8,
+        11,
+        8,
+        15
+      ]
+    }
+  },
+  "comparisons": {
+    "C_vs_A": {
+      "mean_difference": 6.6,
+      "sd_difference": 2.143,
+      "t_statistic": 16.868,
+      "cohens_d": 3.08,
+      "interpretation": "Large"
+    },
+    "C_vs_B": {
+      "mean_difference": 6.3,
+      "sd_difference": 2.409,
+      "t_statistic": 14.324,
+      "cohens_d": 2.615,
+      "interpretation": "Large"
+    },
+    "B_vs_A": {
+      "mean_difference": 0.3,
+      "sd_difference": 0.915,
+      "t_statistic": 1.795,
+      "cohens_d": 0.328,
+      "interpretation": "Small"
+    }
+  },
+  "per_question": [
+    {
+      "question_id": 1,
+      "question": "What is the difference between egotism and arrogance?",
+      "A_SP": {
+        "total": 3,
+        "dims": {
+          "revelation": 1,
+          "structural_discovery": 1,
+          "productive_tension": 0,
+          "consequence_derivation": 1,
+          "question_interrogation": 0
+        }
+      },
+      "B_IAD_P": {
+        "total": 4,
+        "dims": {
+          "revelation": 1,
+          "structural_discovery": 1,
+          "productive_tension": 0,
+          "consequence_derivation": 1,
+          "question_interrogation": 1
+        }
+      },
+      "C_THEOS": {
+        "total": 12,
+        "dims": {
+          "revelation": 3,
+          "structural_discovery": 3,
+          "productive_tension": 2,
+          "consequence_derivation": 2,
+          "question_interrogation": 2
+        }
+      }
+    },
+    {
+      "question_id": 2,
+      "question": "What is the difference between knowledge and wisdom?",
+      "A_SP": {
+        "total": 3,
+        "dims": {
+          "revelation": 1,
+          "structural_discovery": 1,
+          "productive_tension": 0,
+          "consequence_derivation": 1,
+          "question_interrogation": 0
+        }
+      },
+      "B_IAD_P": {
+        "total": 3,
+        "dims": {
+          "revelation": 1,
+          "structural_discovery": 1,
+          "productive_tension": 0,
+          "consequence_derivation": 1,
+          "question_interrogation": 0
+        }
+      },
+      "C_THEOS": {
+        "total": 8,
+        "dims": {
+          "revelation": 2,
+          "structural_discovery": 2,
+          "productive_tension": 1,
+          "consequence_derivation": 2,
+          "question_interrogation": 1
+        }
+      }
+    },
+    {
+      "question_id": 3,
+      "question": "What is the difference between courage and recklessness?",
+      "A_SP": {
+        "total": 3,
+        "dims": {
+          "revelation": 1,
+          "structural_discovery": 1,
+          "productive_tension": 0,
+          "consequence_derivation": 1,
+          "question_interrogation": 0
+        }
+      },
+      "B_IAD_P": {
+        "total": 3,
+        "dims": {
+          "revelation": 1,
+          "structural_discovery": 1,
+          "productive_tension": 0,
+          "consequence_derivation": 1,
+          "question_interrogation": 0
+        }
+      },
+      "C_THEOS": {
+        "total": 12,
+        "dims": {
+          "revelation": 3,
+          "structural_discovery": 2,
+          "productive_tension": 2,
+          "consequence_derivation": 3,
+          "question_interrogation": 2
+        }
+      }
+    },
+    {
+      "question_id": 4,
+      "question": "What is the difference between empathy and sympathy?",
+      "A_SP": {
+        "total": 3,
+        "dims": {
+          "revelation": 1,
+          "structural_discovery": 1,
+          "productive_tension": 0,
+          "consequence_derivation": 1,
+          "question_interrogation": 0
+        }
+      },
+      "B_IAD_P": {
+        "total": 3,
+        "dims": {
+          "revelation": 1,
+          "structural_discovery": 1,
+          "productive_tension": 0,
+          "consequence_derivation": 1,
+          "question_interrogation": 0
+        }
+      },
+      "C_THEOS": {
+        "total": 10,
+        "dims": {
+          "revelation": 3,
+          "structural_discovery": 2,
+          "productive_tension": 1,
+          "consequence_derivation": 2,
+          "question_interrogation": 2
+        }
+      }
+    },
+    {
+      "question_id": 5,
+      "question": "What is the difference between explanation and understanding?",
+      "A_SP": {
+        "total": 3,
+        "dims": {
+          "revelation": 1,
+          "structural_discovery": 1,
+          "productive_tension": 0,
+          "consequence_derivation": 1,
+          "question_interrogation": 0
+        }
+      },
+      "B_IAD_P": {
+        "total": 3,
+        "dims": {
+          "revelation": 1,
+          "structural_discovery": 1,
+          "productive_tension": 0,
+          "consequence_derivation": 1,
+          "question_interrogation": 0
+        }
+      },
+      "C_THEOS": {
+        "total": 11,
+        "dims": {
+          "revelation": 2,
+          "structural_discovery": 2,
+          "productive_tension": 2,
+          "consequence_derivation": 2,
+          "question_interrogation": 3
+        }
+      }
+    },
+    {
+      "question_id": 6,
+      "question": "What is the difference between efficiency and effectiveness?",
+      "A_SP": {
+        "total": 3,
+        "dims": {
+          "revelation": 1,
+          "structural_discovery": 1,
+          "productive_tension": 0,
+          "consequence_derivation": 1,
+          "question_interrogation": 0
+        }
+      },
+      "B_IAD_P": {
+        "total": 3,
+        "dims": {
+          "revelation": 1,
+          "structural_discovery": 1,
+          "productive_tension": 0,
+          "consequence_derivation": 1,
+          "question_interrogation": 0
+        }
+      },
+      "C_THEOS": {
+        "total": 9,
+        "dims": {
+          "revelation": 2,
+          "structural_discovery": 2,
+          "productive_tension": 1,
+          "consequence_derivation": 2,
+          "question_interrogation": 2
+        }
+      }
+    },
+    {
+      "question_id": 7,
+      "question": "What is the difference between compromise and collaboration?",
+      "A_SP": {
+        "total": 3,
+        "dims": {
+          "revelation": 1,
+          "structural_discovery": 1,
+          "productive_tension": 0,
+          "consequence_derivation": 1,
+          "question_interrogation": 0
+        }
+      },
+      "B_IAD_P": {
+        "total": 3,
+        "dims": {
+          "revelation": 1,
+          "structural_discovery": 1,
+          "productive_tension": 0,
+          "consequence_derivation": 1,
+          "question_interrogation": 0
+        }
+      },
+      "C_THEOS": {
+        "total": 12,
+        "dims": {
+          "revelation": 3,
+          "structural_discovery": 2,
+          "productive_tension": 2,
+          "consequence_derivation": 3,
+          "question_interrogation": 2
+        }
+      }
+    },
+    {
+      "question_id": 8,
+      "question": "What is the difference between education and training?",
+      "A_SP": {
+        "total": 3,
+        "dims": {
+          "revelation": 1,
+          "structural_discovery": 1,
+          "productive_tension": 0,
+          "consequence_derivation": 1,
+          "question_interrogation": 0
+        }
+      },
+      "B_IAD_P": {
+        "total": 3,
+        "dims": {
+          "revelation": 1,
+          "structural_discovery": 1,
+          "productive_tension": 0,
+          "consequence_derivation": 1,
+          "question_interrogation": 0
+        }
+      },
+      "C_THEOS": {
+        "total": 8,
+        "dims": {
+          "revelation": 2,
+          "structural_discovery": 2,
+          "productive_tension": 1,
+          "consequence_derivation": 2,
+          "question_interrogation": 1
+        }
+      }
+    },
+    {
+      "question_id": 9,
+      "question": "What is the difference between leadership and management?",
+      "A_SP": {
+        "total": 3,
+        "dims": {
+          "revelation": 1,
+          "structural_discovery": 1,
+          "productive_tension": 0,
+          "consequence_derivation": 1,
+          "question_interrogation": 0
+        }
+      },
+      "B_IAD_P": {
+        "total": 3,
+        "dims": {
+          "revelation": 1,
+          "structural_discovery": 1,
+          "productive_tension": 0,
+          "consequence_derivation": 1,
+          "question_interrogation": 0
+        }
+      },
+      "C_THEOS": {
+        "total": 8,
+        "dims": {
+          "revelation": 2,
+          "structural_discovery": 2,
+          "productive_tension": 1,
+          "consequence_derivation": 2,
+          "question_interrogation": 1
+        }
+      }
+    },
+    {
+      "question_id": 10,
+      "question": "What is the difference between precision and accuracy?",
+      "A_SP": {
+        "total": 3,
+        "dims": {
+          "revelation": 1,
+          "structural_discovery": 1,
+          "productive_tension": 0,
+          "consequence_derivation": 1,
+          "question_interrogation": 0
+        }
+      },
+      "B_IAD_P": {
+        "total": 3,
+        "dims": {
+          "revelation": 1,
+          "structural_discovery": 1,
+          "productive_tension": 0,
+          "consequence_derivation": 1,
+          "question_interrogation": 0
+        }
+      },
+      "C_THEOS": {
+        "total": 8,
+        "dims": {
+          "revelation": 2,
+          "structural_discovery": 2,
+          "productive_tension": 1,
+          "consequence_derivation": 2,
+          "question_interrogation": 1
+        }
+      }
+    },
+    {
+      "question_id": 11,
+      "question": "Why do organizations resist change even when change is clearly necessary?",
+      "A_SP": {
+        "total": 3,
+        "dims": {
+          "revelation": 1,
+          "structural_discovery": 1,
+          "productive_tension": 0,
+          "consequence_derivation": 1,
+          "question_interrogation": 0
+        }
+      },
+      "B_IAD_P": {
+        "total": 7,
+        "dims": {
+          "revelation": 2,
+          "structural_discovery": 1,
+          "productive_tension": 0,
+          "consequence_derivation": 1,
+          "question_interrogation": 3
+        }
+      },
+      "C_THEOS": {
+        "total": 6,
+        "dims": {
+          "revelation": 1,
+          "structural_discovery": 1,
+          "productive_tension": 1,
+          "consequence_derivation": 2,
+          "question_interrogation": 1
+        }
+      }
+    },
+    {
+      "question_id": 12,
+      "question": "Why does adding more resources sometimes slow down a project?",
+      "A_SP": {
+        "total": 3,
+        "dims": {
+          "revelation": 1,
+          "structural_discovery": 1,
+          "productive_tension": 0,
+          "consequence_derivation": 1,
+          "question_interrogation": 0
+        }
+      },
+      "B_IAD_P": {
+        "total": 3,
+        "dims": {
+          "revelation": 1,
+          "structural_discovery": 1,
+          "productive_tension": 0,
+          "consequence_derivation": 1,
+          "question_interrogation": 0
+        }
+      },
+      "C_THEOS": {
+        "total": 8,
+        "dims": {
+          "revelation": 2,
+          "structural_discovery": 2,
+          "productive_tension": 1,
+          "consequence_derivation": 2,
+          "question_interrogation": 1
+        }
+      }
+    },
+    {
+      "question_id": 13,
+      "question": "Why do warnings often go unheeded until it's too late?",
+      "A_SP": {
+        "total": 3,
+        "dims": {
+          "revelation": 1,
+          "structural_discovery": 1,
+          "productive_tension": 0,
+          "consequence_derivation": 1,
+          "question_interrogation": 0
+        }
+      },
+      "B_IAD_P": {
+        "total": 3,
+        "dims": {
+          "revelation": 1,
+          "structural_discovery": 1,
+          "productive_tension": 0,
+          "consequence_derivation": 1,
+          "question_interrogation": 0
+        }
+      },
+      "C_THEOS": {
+        "total": 8,
+        "dims": {
+          "revelation": 2,
+          "structural_discovery": 2,
+          "productive_tension": 1,
+          "consequence_derivation": 2,
+          "question_interrogation": 1
+        }
+      }
+    },
+    {
+      "question_id": 14,
+      "question": "Why do good intentions sometimes produce bad outcomes?",
+      "A_SP": {
+        "total": 3,
+        "dims": {
+          "revelation": 1,
+          "structural_discovery": 1,
+          "productive_tension": 0,
+          "consequence_derivation": 1,
+          "question_interrogation": 0
+        }
+      },
+      "B_IAD_P": {
+        "total": 3,
+        "dims": {
+          "revelation": 1,
+          "structural_discovery": 1,
+          "productive_tension": 0,
+          "consequence_derivation": 1,
+          "question_interrogation": 0
+        }
+      },
+      "C_THEOS": {
+        "total": 10,
+        "dims": {
+          "revelation": 2,
+          "structural_discovery": 2,
+          "productive_tension": 2,
+          "consequence_derivation": 2,
+          "question_interrogation": 2
+        }
+      }
+    },
+    {
+      "question_id": 15,
+      "question": "Why is it harder to simplify than to complicate?",
+      "A_SP": {
+        "total": 3,
+        "dims": {
+          "revelation": 1,
+          "structural_discovery": 1,
+          "productive_tension": 0,
+          "consequence_derivation": 1,
+          "question_interrogation": 0
+        }
+      },
+      "B_IAD_P": {
+        "total": 3,
+        "dims": {
+          "revelation": 1,
+          "structural_discovery": 1,
+          "productive_tension": 0,
+          "consequence_derivation": 1,
+          "question_interrogation": 0
+        }
+      },
+      "C_THEOS": {
+        "total": 9,
+        "dims": {
+          "revelation": 2,
+          "structural_discovery": 2,
+          "productive_tension": 2,
+          "consequence_derivation": 2,
+          "question_interrogation": 1
+        }
+      }
+    },
+    {
+      "question_id": 16,
+      "question": "Why do simple rules sometimes produce complex behavior?",
+      "A_SP": {
+        "total": 3,
+        "dims": {
+          "revelation": 1,
+          "structural_discovery": 1,
+          "productive_tension": 0,
+          "consequence_derivation": 1,
+          "question_interrogation": 0
+        }
+      },
+      "B_IAD_P": {
+        "total": 3,
+        "dims": {
+          "revelation": 1,
+          "structural_discovery": 1,
+          "productive_tension": 0,
+          "consequence_derivation": 1,
+          "question_interrogation": 0
+        }
+      },
+      "C_THEOS": {
+        "total": 9,
+        "dims": {
+          "revelation": 2,
+          "structural_discovery": 3,
+          "productive_tension": 1,
+          "consequence_derivation": 2,
+          "question_interrogation": 1
+        }
+      }
+    },
+    {
+      "question_id": 17,
+      "question": "Why does measuring something sometimes change what is being measured?",
+      "A_SP": {
+        "total": 4,
+        "dims": {
+          "revelation": 1,
+          "structural_discovery": 2,
+          "productive_tension": 0,
+          "consequence_derivation": 1,
+          "question_interrogation": 0
+        }
+      },
+      "B_IAD_P": {
+        "total": 4,
+        "dims": {
+          "revelation": 1,
+          "structural_discovery": 2,
+          "productive_tension": 0,
+          "consequence_derivation": 1,
+          "question_interrogation": 0
+        }
+      },
+      "C_THEOS": {
+        "total": 8,
+        "dims": {
+          "revelation": 2,
+          "structural_discovery": 2,
+          "productive_tension": 1,
+          "consequence_derivation": 2,
+          "question_interrogation": 1
+        }
+      }
+    },
+    {
+      "question_id": 18,
+      "question": "Why do successful strategies sometimes become obstacles to future success?",
+      "A_SP": {
+        "total": 3,
+        "dims": {
+          "revelation": 1,
+          "structural_discovery": 1,
+          "productive_tension": 0,
+          "consequence_derivation": 1,
+          "question_interrogation": 0
+        }
+      },
+      "B_IAD_P": {
+        "total": 3,
+        "dims": {
+          "revelation": 1,
+          "structural_discovery": 1,
+          "productive_tension": 0,
+          "consequence_derivation": 1,
+          "question_interrogation": 0
+        }
+      },
+      "C_THEOS": {
+        "total": 8,
+        "dims": {
+          "revelation": 2,
+          "structural_discovery": 2,
+          "productive_tension": 1,
+          "consequence_derivation": 2,
+          "question_interrogation": 1
+        }
+      }
+    },
+    {
+      "question_id": 19,
+      "question": "What is the relationship between risk and opportunity?",
+      "A_SP": {
+        "total": 3,
+        "dims": {
+          "revelation": 1,
+          "structural_discovery": 1,
+          "productive_tension": 0,
+          "consequence_derivation": 1,
+          "question_interrogation": 0
+        }
+      },
+      "B_IAD_P": {
+        "total": 3,
+        "dims": {
+          "revelation": 1,
+          "structural_discovery": 1,
+          "productive_tension": 0,
+          "consequence_derivation": 1,
+          "question_interrogation": 0
+        }
+      },
+      "C_THEOS": {
+        "total": 13,
+        "dims": {
+          "revelation": 3,
+          "structural_discovery": 3,
+          "productive_tension": 2,
+          "consequence_derivation": 3,
+          "question_interrogation": 2
+        }
+      }
+    },
+    {
+      "question_id": 20,
+      "question": "What is the relationship between freedom and responsibility?",
+      "A_SP": {
+        "total": 3,
+        "dims": {
+          "revelation": 1,
+          "structural_discovery": 1,
+          "productive_tension": 0,
+          "consequence_derivation": 1,
+          "question_interrogation": 0
+        }
+      },
+      "B_IAD_P": {
+        "total": 3,
+        "dims": {
+          "revelation": 1,
+          "structural_discovery": 1,
+          "productive_tension": 0,
+          "consequence_derivation": 1,
+          "question_interrogation": 0
+        }
+      },
+      "C_THEOS": {
+        "total": 7,
+        "dims": {
+          "revelation": 1,
+          "structural_discovery": 2,
+          "productive_tension": 1,
+          "consequence_derivation": 2,
+          "question_interrogation": 1
+        }
+      }
+    },
+    {
+      "question_id": 21,
+      "question": "What is the relationship between competition and cooperation?",
+      "A_SP": {
+        "total": 3,
+        "dims": {
+          "revelation": 1,
+          "structural_discovery": 1,
+          "productive_tension": 0,
+          "consequence_derivation": 1,
+          "question_interrogation": 0
+        }
+      },
+      "B_IAD_P": {
+        "total": 3,
+        "dims": {
+          "revelation": 1,
+          "structural_discovery": 1,
+          "productive_tension": 0,
+          "consequence_derivation": 1,
+          "question_interrogation": 0
+        }
+      },
+      "C_THEOS": {
+        "total": 12,
+        "dims": {
+          "revelation": 3,
+          "structural_discovery": 3,
+          "productive_tension": 2,
+          "consequence_derivation": 2,
+          "question_interrogation": 2
+        }
+      }
+    },
+    {
+      "question_id": 22,
+      "question": "What is the relationship between humility and confidence?",
+      "A_SP": {
+        "total": 3,
+        "dims": {
+          "revelation": 1,
+          "structural_discovery": 1,
+          "productive_tension": 0,
+          "consequence_derivation": 1,
+          "question_interrogation": 0
+        }
+      },
+      "B_IAD_P": {
+        "total": 6,
+        "dims": {
+          "revelation": 2,
+          "structural_discovery": 2,
+          "productive_tension": 0,
+          "consequence_derivation": 1,
+          "question_interrogation": 1
+        }
+      },
+      "C_THEOS": {
+        "total": 10,
+        "dims": {
+          "revelation": 2,
+          "structural_discovery": 2,
+          "productive_tension": 2,
+          "consequence_derivation": 2,
+          "question_interrogation": 2
+        }
+      }
+    },
+    {
+      "question_id": 23,
+      "question": "What is the relationship between structure and creativity?",
+      "A_SP": {
+        "total": 3,
+        "dims": {
+          "revelation": 1,
+          "structural_discovery": 1,
+          "productive_tension": 0,
+          "consequence_derivation": 1,
+          "question_interrogation": 0
+        }
+      },
+      "B_IAD_P": {
+        "total": 3,
+        "dims": {
+          "revelation": 1,
+          "structural_discovery": 1,
+          "productive_tension": 0,
+          "consequence_derivation": 1,
+          "question_interrogation": 0
+        }
+      },
+      "C_THEOS": {
+        "total": 8,
+        "dims": {
+          "revelation": 2,
+          "structural_discovery": 2,
+          "productive_tension": 1,
+          "consequence_derivation": 2,
+          "question_interrogation": 1
+        }
+      }
+    },
+    {
+      "question_id": 24,
+      "question": "What is the relationship between individual incentives and collective outcomes?",
+      "A_SP": {
+        "total": 3,
+        "dims": {
+          "revelation": 1,
+          "structural_discovery": 1,
+          "productive_tension": 0,
+          "consequence_derivation": 1,
+          "question_interrogation": 0
+        }
+      },
+      "B_IAD_P": {
+        "total": 3,
+        "dims": {
+          "revelation": 1,
+          "structural_discovery": 1,
+          "productive_tension": 0,
+          "consequence_derivation": 1,
+          "question_interrogation": 0
+        }
+      },
+      "C_THEOS": {
+        "total": 10,
+        "dims": {
+          "revelation": 2,
+          "structural_discovery": 2,
+          "productive_tension": 2,
+          "consequence_derivation": 2,
+          "question_interrogation": 2
+        }
+      }
+    },
+    {
+      "question_id": 25,
+      "question": "What is the relationship between novelty and learning?",
+      "A_SP": {
+        "total": 3,
+        "dims": {
+          "revelation": 1,
+          "structural_discovery": 1,
+          "productive_tension": 0,
+          "consequence_derivation": 1,
+          "question_interrogation": 0
+        }
+      },
+      "B_IAD_P": {
+        "total": 3,
+        "dims": {
+          "revelation": 1,
+          "structural_discovery": 1,
+          "productive_tension": 0,
+          "consequence_derivation": 1,
+          "question_interrogation": 0
+        }
+      },
+      "C_THEOS": {
+        "total": 10,
+        "dims": {
+          "revelation": 3,
+          "structural_discovery": 2,
+          "productive_tension": 1,
+          "consequence_derivation": 2,
+          "question_interrogation": 2
+        }
+      }
+    },
+    {
+      "question_id": 26,
+      "question": "Why does trust take time to build but moments to destroy?",
+      "A_SP": {
+        "total": 3,
+        "dims": {
+          "revelation": 1,
+          "structural_discovery": 1,
+          "productive_tension": 0,
+          "consequence_derivation": 1,
+          "question_interrogation": 0
+        }
+      },
+      "B_IAD_P": {
+        "total": 3,
+        "dims": {
+          "revelation": 1,
+          "structural_discovery": 1,
+          "productive_tension": 0,
+          "consequence_derivation": 1,
+          "question_interrogation": 0
+        }
+      },
+      "C_THEOS": {
+        "total": 13,
+        "dims": {
+          "revelation": 3,
+          "structural_discovery": 3,
+          "productive_tension": 2,
+          "consequence_derivation": 3,
+          "question_interrogation": 2
+        }
+      }
+    },
+    {
+      "question_id": 27,
+      "question": "Why do experts often communicate poorly with non-experts?",
+      "A_SP": {
+        "total": 3,
+        "dims": {
+          "revelation": 1,
+          "structural_discovery": 1,
+          "productive_tension": 0,
+          "consequence_derivation": 1,
+          "question_interrogation": 0
+        }
+      },
+      "B_IAD_P": {
+        "total": 3,
+        "dims": {
+          "revelation": 1,
+          "structural_discovery": 1,
+          "productive_tension": 0,
+          "consequence_derivation": 1,
+          "question_interrogation": 0
+        }
+      },
+      "C_THEOS": {
+        "total": 8,
+        "dims": {
+          "revelation": 2,
+          "structural_discovery": 2,
+          "productive_tension": 1,
+          "consequence_derivation": 2,
+          "question_interrogation": 1
+        }
+      }
+    },
+    {
+      "question_id": 28,
+      "question": "Why do people often value things more if they worked for them?",
+      "A_SP": {
+        "total": 3,
+        "dims": {
+          "revelation": 1,
+          "structural_discovery": 1,
+          "productive_tension": 0,
+          "consequence_derivation": 1,
+          "question_interrogation": 0
+        }
+      },
+      "B_IAD_P": {
+        "total": 3,
+        "dims": {
+          "revelation": 1,
+          "structural_discovery": 1,
+          "productive_tension": 0,
+          "consequence_derivation": 1,
+          "question_interrogation": 0
+        }
+      },
+      "C_THEOS": {
+        "total": 11,
+        "dims": {
+          "revelation": 3,
+          "structural_discovery": 2,
+          "productive_tension": 2,
+          "consequence_derivation": 2,
+          "question_interrogation": 2
+        }
+      }
+    },
+    {
+      "question_id": 29,
+      "question": "Why is consensus difficult to achieve in groups?",
+      "A_SP": {
+        "total": 3,
+        "dims": {
+          "revelation": 1,
+          "structural_discovery": 1,
+          "productive_tension": 0,
+          "consequence_derivation": 1,
+          "question_interrogation": 0
+        }
+      },
+      "B_IAD_P": {
+        "total": 3,
+        "dims": {
+          "revelation": 1,
+          "structural_discovery": 1,
+          "productive_tension": 0,
+          "consequence_derivation": 1,
+          "question_interrogation": 0
+        }
+      },
+      "C_THEOS": {
+        "total": 8,
+        "dims": {
+          "revelation": 2,
+          "structural_discovery": 2,
+          "productive_tension": 1,
+          "consequence_derivation": 2,
+          "question_interrogation": 1
+        }
+      }
+    },
+    {
+      "question_id": 30,
+      "question": "Why does transparency sometimes reduce trust instead of building it?",
+      "A_SP": {
+        "total": 3,
+        "dims": {
+          "revelation": 1,
+          "structural_discovery": 1,
+          "productive_tension": 0,
+          "consequence_derivation": 1,
+          "question_interrogation": 0
+        }
+      },
+      "B_IAD_P": {
+        "total": 4,
+        "dims": {
+          "revelation": 1,
+          "structural_discovery": 2,
+          "productive_tension": 0,
+          "consequence_derivation": 1,
+          "question_interrogation": 0
+        }
+      },
+      "C_THEOS": {
+        "total": 15,
+        "dims": {
+          "revelation": 3,
+          "structural_discovery": 3,
+          "productive_tension": 3,
+          "consequence_derivation": 3,
+          "question_interrogation": 3
+        }
+      }
+    }
+  ]
+}

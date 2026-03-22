@@ -1,0 +1,30 @@
+# THEOS Native Architecture Requirements
+# ========================================
+# Install on RunPod: pip install -r requirements.txt
+#
+# Core ML stack
+torch>=2.2.0
+transformers>=4.40.0
+accelerate>=0.28.0
+bitsandbytes>=0.43.0        # QLoRA 4-bit quantization
+peft>=0.10.0                # LoRA fine-tuning + prepare_model_for_kbit_training
+
+# Training
+trl>=0.8.0                  # Optional: SFTTrainer convenience wrapper
+datasets>=2.18.0            # Optional: HuggingFace datasets
+wandb>=0.16.0               # Optional: experiment tracking (train.py uses if available)
+safetensors>=0.4.0          # Faster model saving
+
+# API server
+fastapi>=0.110.0
+uvicorn[standard]>=0.28.0
+
+# Training data generation
+anthropic>=0.25.0
+
+# Model download
+huggingface_hub>=0.22.0
+
+# Utilities
+sentencepiece>=0.2.0        # Tokenizer dependency for LLaMA variants
+protobuf>=4.0.0

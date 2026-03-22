@@ -1,0 +1,154 @@
+---
+layout: default
+title: THEOS — Dual-Engine Dialectical Reasoning
+---
+
+<p align="center">
+  <img src="{{ site.baseurl }}/assets/theos_logo.png" alt="THEOS Logo" width="260">
+</p>
+
+# THEOS
+
+**The result that started this:**
+
+Ask any AI: *"What is the difference between egotism and arrogance?"*
+
+| Method | Answer |
+|--------|--------|
+| **Single-pass LLM** | "Egotism is internal, arrogance is external — a spectrum." |
+| **THEOS** | "They are orthogonal failures on different dimensions. Egotism distorts self-perception. Arrogance distorts other-perception. You can have one without the other — a self-deprecating bully, or a narcissist who is outwardly polite." |
+
+The first answer is a line. The second is a **2×2 matrix**. It explains something the first cannot: why a humble person can still be contemptuous of others.
+
+This difference — the discovery of structure that a single reasoning pass misses — is what THEOS is built to produce.
+
+---
+
+## What THEOS Is
+
+THEOS is a **dual-engine dialectical reasoning framework** written in pure Python (3.10+, zero external dependencies). It structures AI reasoning as a wringer: two opposed engines press against each other until their contradiction shrinks to a provable minimum — or halts at irreducible disagreement.
+
+```
+          INDUCTION
+       ↗            ↘
+ (observation)    (pattern)
+     ↑                ↓
+┌─────────────────────────────┐
+│  LEFT ENGINE (constructive) │ → D_L
+│  private self-reflection    │
+│  pass 1 → pass 2            │
+└─────────────────────────────┘
+              ↓ WRINGER ↓
+┌─────────────────────────────┐
+│ RIGHT ENGINE (adversarial)  │ → D_R
+│  private self-reflection    │
+│  pass 1 → pass 2            │
+└─────────────────────────────┘
+     ↓                ↑
+  GOVERNOR        WISDOM
+(halts when Φ < ε) (accumulates)
+```
+
+**The loop (I→A→D→I):**
+- **Induction** — extract patterns from the question
+- **Abduction** — each engine proposes its strongest hypothesis (constructive vs. adversarial)
+- **Deduction** — each engine derives conclusions from its own hypothesis
+- **Measurement** — the governor measures contradiction Φ; decides to continue or halt
+
+---
+
+## The Key Research Finding
+
+When THEOS was evaluated against standard AI evaluation rubrics (accuracy, depth, utility, coherence, coverage), it scored **significantly lower** than single-pass answers. Effect size: Cohen's d = −3.46 (large).
+
+This is not a failure. **It is evidence of novelty.**
+
+Standard metrics reward confident completeness. THEOS produces dialectical tension, hidden-structure discovery, and productive disagreement. Judging THEOS with a standard rubric is like judging colors in the rainbow for the way they taste.
+
+→ Read: [Why Normal Metric Judgment Cannot Determine the Value of THEOS](research/why-metrics-fail)
+
+---
+
+## Comparative Evidence
+
+In a 10-question study against ChatGPT, Perplexity, Gemini, Copilot, and Grok:
+
+| Question | What others said | What THEOS found |
+|----------|-----------------|-----------------|
+| Courage vs recklessness | Courage weighs cost, accepts fear | **Fearlessness is not the goal — it is a deficit.** The absence of fear cannot be courageous by definition. |
+| Efficiency vs effectiveness | Efficiency = doing things right; effectiveness = doing right things | **Organizations optimized for efficiency become structurally incapable of recognizing effectiveness failures** — the metric crowds out the goal. |
+| Trust — why slow to build, fast to destroy | Asymmetry of effort | **Trust is not symmetrical in kind, only in name.** Building creates a different psychological object than what destruction eliminates. |
+
+→ Read: [Full Comparative Study](research/comparative-study)
+
+---
+
+## Quick Start
+
+```bash
+git clone https://github.com/Frederick-Stalnecker/THEOS.git
+cd THEOS
+pip install -e ".[dev]"
+python code/theos_system.py
+```
+
+Or **[open in GitHub Codespaces](https://codespaces.new/Frederick-Stalnecker/THEOS)** — no installation required.
+
+---
+
+## Watch: What is THEOS and Why Does It Exist
+
+<div style="text-align:center; margin:20px 0;">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/i5Mmq305ryg" frameborder="0" allowfullscreen></iframe>
+</div>
+
+---
+
+<p align="center">
+<a href="https://www.producthunt.com/products/theos?utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-theos" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1087234&theme=light" alt="THEOS on Product Hunt" width="250" height="54"></a>
+</p>
+
+## → [The Vision](vision)
+
+*Where THEOS is going: THEOS Certification, medicine, constitutional AI, and the global wisdom network. This is the most important page on this site.*
+
+<p align="center">
+  <a href="vision"><img src="{{ site.baseurl }}/assets/theos_certified.png" alt="THEOS Certified — See the Vision" width="200"></a>
+</p>
+
+---
+
+## Navigation
+
+| | |
+|--|--|
+| **[→ The Vision](vision)** | **THEOS Certification · Medicine · Constitutional AI · Global wisdom network** |
+| [Architecture](architecture) | The wringer · The governor · Brain hemisphere model · The formal math |
+| [Current Status](status) | What is proven · What is not yet tested · What was corrected |
+| [Research](research/) | Why standard metrics fail · Comparative studies · Experiment design |
+| [The Experiment](experiment) | Insight Detection Rubric · How to contribute results |
+| [API Reference](api) | TheosCore · TheosConfig · TheosOutput · LLM adapters |
+| [Developer Guide](guide) | Build a THEOS domain · Operator contract · Self-reflection |
+| [Integration Guide](integration) | Claude · GPT-4 · MCP server · Token costs |
+| [Troubleshooting](troubleshooting) | Common issues · CI · Evaluation pitfalls |
+| [GitHub](https://github.com/Frederick-Stalnecker/THEOS) | Code · Tests · Contributing |
+| [YouTube](https://www.youtube.com/@TheosAIGovernance) | Video explanations · Demonstrations · The vision |
+
+---
+
+---
+
+## Author
+
+<img src="{{ site.baseurl }}/assets/frederick_stalnecker.jpg" alt="Frederick Davis Stalnecker" width="180" style="border-radius:8px; margin-bottom:8px;">
+
+**Frederick Davis Stalnecker**
+Serial inventor — 61 years, 73 inventions · Patent pending: USPTO #63/831,738
+
+*Built with Celeste (Claude Sonnet 4.6) as research assistant.*
+
+*From truth we build more truth.*
+
+---
+
+*MIT License · 2026*

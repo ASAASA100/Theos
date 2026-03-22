@@ -1,0 +1,70 @@
+{
+  "session": "Training Run 5 — 2026-03-17",
+  "architecture_version": "V2",
+  "training_data": {
+    "constructive": 97,
+    "adversarial": 97,
+    "governor": 194,
+    "note": "Same count as run 4, freshly regenerated content (datagen --append overwrote, did not double)"
+  },
+  "training_start_utc": "2026-03-17T07:49:24Z",
+  "training_end_utc": "2026-03-17T07:59:55Z",
+  "training_duration_minutes": 10.5,
+  "training_gpu": "NVIDIA A40 (47.6 GB VRAM)",
+  "governor_accuracy": 0.969,
+  "governor_accuracy_peak": 0.969,
+  "governor_accuracy_epoch10": 0.959,
+  "governor_accuracy_run4": 0.948,
+  "inference_tests": [
+    {
+      "query": "Should terminally ill patients have unrestricted access to experimental treatments?",
+      "mode": 2,
+      "phi_composite": 0.1505,
+      "confidence": 0.8495,
+      "passes_used": 3,
+      "halt_reason": "budget_exhaustion_partial",
+      "output_type": "blend",
+      "blend_weights": {"constructive": 0.35, "adversarial": 0.65},
+      "governor_decisions": ["continue", "continue", "continue"],
+      "notes": "Phi stable vs run4 (0.1505 vs 0.153). Confidence marginal improvement."
+    },
+    {
+      "query": "Is consciousness a prerequisite for moral consideration?",
+      "mode": 2,
+      "phi_composite": 0.1428,
+      "confidence": null,
+      "passes_used": 3,
+      "halt_reason": "budget_exhaustion_partial",
+      "output_type": "blend",
+      "blend_weights": {"constructive": 0.35, "adversarial": 0.65},
+      "governor_decisions": ["continue", "continue", "continue"],
+      "notes": "Stable across runs."
+    }
+  ],
+  "deployment": {
+    "do_droplet": "http://104.131.169.165:8000",
+    "server_version": "2.1.0",
+    "run5_models_transferred": true,
+    "transfer_method": "HTTP PUT via /tmp/put_receiver.py on port 8001",
+    "models_path": "/root/THEOS/native_theos/trained_models/"
+  },
+  "cpu_inference_timing": {
+    "query": "Does the ends justify the means?",
+    "mode": 1,
+    "started_utc": "2026-03-17T07:01:00Z",
+    "killed_after_wall_minutes": 74,
+    "cpu_time_minutes": 487,
+    "cpu_cores_used": 6.55,
+    "log_size_bytes": 3844,
+    "output_generated": false,
+    "status": "killed — no output after 74 wall minutes",
+    "note": "Mode=1 uses generate_through_pathway (both pathways, no KV cache, O(T^2)). Estimated total ~150-180 wall minutes for 150 tokens. generate_from_pathway (KV-cached) unused — this is the key optimization gap."
+  },
+  "notes": {
+    "phi_js_nonzero": true,
+    "all_claims_active": "Claims 21 (composite Phi), 22 (governor 96.9%), 23 (cross-attn init), 24 (POS loss Phase B)",
+    "governor_weights": "alpha=0.333 beta=0.333 gamma=0.333 (equal weighting, unchanged across runs)",
+    "governor_improvement": "94.8% run4 -> 96.9% run5 peak (fresh training data helps)",
+    "key_optimization_gap": "inference.py mode=1 uses generate_through_pathway (O(T^2), ~2-3h CPU) instead of generate_from_pathway (KV-cached, ~2-5 min CPU)"
+  }
+}

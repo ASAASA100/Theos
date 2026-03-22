@@ -1,0 +1,48 @@
+{
+  "session": "Training Run 6 — Cross-Attention Phase D — 2026-03-17",
+  "architecture_version": "V2",
+  "phase": "cross_attn",
+  "claim": "Claim 23 — Pathway Cross-Attention Module",
+  "training_gpu": "NVIDIA A40 (47.6 GB VRAM)",
+  "training_questions": 97,
+  "total_entries": 194,
+  "epochs": 20,
+  "learning_rate": 0.0001,
+  "margin": 0.01,
+  "lambda_collapse": 0.5,
+  "eps_converge": 0.05,
+  "trainable_parameters": 134234112,
+  "frozen": "LoRA adapters (left + right), Governor MLP, all base model weights",
+  "loss_objective": "ReLU(phi_2 - phi_1 + margin) + 0.5 * ReLU(eps_converge - phi_2)",
+  "training_data": "governor_data.jsonl (same 97 questions used for governor training)",
+  "results": {
+    "epoch_1":  {"loss": 0.1058, "phi_1": 0.0721, "phi_2": 0.1495, "decreased_pct": 77,  "collapsed_pct": 54},
+    "epoch_2":  {"loss": 0.0046, "phi_1": 0.0721, "phi_2": 0.0507, "decreased_pct": 89,  "collapsed_pct": 61},
+    "epoch_4":  {"loss": 0.0024, "phi_1": 0.0721, "phi_2": 0.0514, "decreased_pct": 97,  "collapsed_pct": 45},
+    "epoch_8":  {"loss": 0.0017, "phi_1": 0.0721, "phi_2": 0.0517, "decreased_pct": 100, "collapsed_pct": 37},
+    "epoch_11": {"loss": 0.0013, "phi_1": 0.0721, "phi_2": 0.0520, "decreased_pct": 100, "collapsed_pct": 37},
+    "epoch_14": {"loss": 0.0011, "phi_1": 0.0721, "phi_2": 0.0527, "decreased_pct": 100, "collapsed_pct": 28},
+    "epoch_16": {"loss": 0.0011, "phi_1": 0.0721, "phi_2": 0.0535, "decreased_pct": 100, "collapsed_pct": 28},
+    "final":    {"phi_1": 0.0721, "phi_2": 0.0536, "delta": 0.0184, "reduction_pct": 25.5}
+  },
+  "final_phi_reduction": {
+    "phi_before_cross_attn": 0.0721,
+    "phi_after_cross_attn":  0.0536,
+    "delta": 0.0184,
+    "reduction_percent": 25.5,
+    "note": "Pass 1 (no cross-attn) → Pass 2 (cross-attn active): 25.5% Phi reduction per wringer pass"
+  },
+  "deployment": {
+    "do_droplet": "http://104.131.169.165:8000",
+    "weights_transferred": true,
+    "server_confirmed_loaded": "Trained cross-attention loaded (Claim 23 — Phase D weights)",
+    "files": ["trained_models/cross_attn_left.pt", "trained_models/cross_attn_right.pt"]
+  },
+  "significance": {
+    "before_phase_d": "W_O initialized to zero — cross-attention was a structural no-op (pass 1 = pass 2)",
+    "after_phase_d":  "Cross-attention reduces Phi by 25.5% per pass — all 4 patent claims now producing real gradients",
+    "wringer_behavior": "Each wringer pass now genuinely converges pathways toward synthesis via learned attention",
+    "loss_reduction": "0.1058 (epoch 1) → 0.0011 (epoch 16) — 100x reduction",
+    "convergence_rate": "100% of questions show phi_2 < phi_1 at epochs 8, 11-16"
+  }
+}
